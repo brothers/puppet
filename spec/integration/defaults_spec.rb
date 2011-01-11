@@ -49,6 +49,10 @@ describe "Puppet defaults" do
     Puppet.settings[:yamldir].should_not == Puppet.settings[:clientyamldir]
   end
 
+  it "should have a localyamlfile setting" do
+    Puppet.settings[:localyamlfile].should_not be_nil
+  end
+
   it "should have a client_datadir setting" do
     Puppet.settings[:client_datadir].should_not be_nil
   end
