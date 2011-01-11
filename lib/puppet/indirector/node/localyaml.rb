@@ -4,7 +4,10 @@ require 'puppet/util/file_locking'
 require 'yaml'
 
 class Puppet::Node::Localyaml < Puppet::Indirector::Plain
-    desc "Load facts from facter and the node data from a local YAML file."
+    desc "Load node data from a local YAML file containing a hash with values:
+    an array of classes, the environment, and a hash of parameters.  This is
+    just like external node classification for the stand-alone puppet client."
+
     include Puppet::Util::FileLocking
 
     def find(request)
@@ -14,7 +17,7 @@ class Puppet::Node::Localyaml < Puppet::Indirector::Plain
         node.fact_merge
 
         # Load node from local YAML
-        file = "/etc/puppet/node.yaml"
+        file = Puppet[:localyamlfile]
         return node unless FileTest.exist?(file)
 
         yaml = nil

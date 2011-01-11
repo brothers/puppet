@@ -494,6 +494,11 @@ module Puppet
         with clients."
       },
     :clientyamldir => {:default => "$vardir/client_yaml", :mode => "750", :desc => "The directory in which client-side YAML data is stored."},
+    :localyamlfile => { :default => "$confdir/node.yaml",
+      :owner => "root",
+      :mode => 0600,
+      :desc => "Where the localyaml node terminus finds its input."
+    },
     :client_datadir => {:default => "$vardir/client_data", :mode => "750", :desc => "The directory in which serialized data is stored on the client."},
     :classfile => { :default => "$statedir/classes.txt",
       :owner => "root",
